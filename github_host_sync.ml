@@ -31,7 +31,7 @@ let write_host ~path body_string =
   with Sys_error _ -> Printf.eprintf "can not write to file %s\n" path
 
 let () =
-  let usage_msg = "Sync hosts content from github \n [-path] <path> " in
+  let usage_msg = "Sync hosts content from github." in
   let path = ref "/etc/hosts" in
   let anon_fun s = ignore s in
   let speclist = [ ("-path", Arg.Set_string path, "Set output file name") ] in
