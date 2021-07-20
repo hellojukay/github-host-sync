@@ -1,4 +1,4 @@
 (executable
  (name github_host_sync)
- (libraries re str core lwt.unix  cohttp-lwt-unix)
+ (libraries str core lwt.unix  cohttp-lwt-unix)
 )
