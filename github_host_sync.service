@@ -1,0 +1,14 @@
+[Unit]
+Description=github sync host
+Documentation=https://github.com/hellojukay/github-host-sync
+
+[Service]
+Type=simple
+# the default is not to use systemd for cgroups because the delegate issues still
+# exists and systemd currently does not support the cgroup feature set required
+# for containers run by docker
+ExecStart=/usr/local/bin/github_host_sync.exe -path=/etc/hosts
+TimeoutStartSec=0
+
+[Install]
+WantedBy=multi-user.target
