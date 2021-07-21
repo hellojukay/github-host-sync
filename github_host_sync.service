@@ -1,6 +1,10 @@
 [Unit]
 Description=github sync host
 Documentation=https://github.com/hellojukay/github-host-sync
+After=network-online.target firewalld.service
+Wants=network-online.target
+
+
 
 [Service]
 Type=simple
@@ -9,6 +13,11 @@ Type=simple
 # for containers run by docker
 ExecStart=/usr/local/bin/github_host_sync.exe -path=/etc/hosts
 TimeoutStartSec=0
+Restart=on-failure
+StartLimitBurst=3
+StartLimitInterval=60s
+
 
 [Install]
 WantedBy=multi-user.target
+
