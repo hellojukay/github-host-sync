@@ -6,10 +6,10 @@ let body =
   Client.get (Uri.of_string "https://raw.hellogithub.com/hosts")
   >>= fun (_, body) -> Cohttp_lwt.Body.to_string body
 
-let rec any f list =
+let rec evey f list =
   match list with
   | [] -> true
-  | head :: tail -> if f head then any f tail else false
+  | head :: tail -> if f head then evey f tail else false
 
 let check_host_line line =
   if String.length line = 0 then true
@@ -20,7 +20,7 @@ let check_host_line line =
 
 let is_host body =
   let lines = String.split body ~on:'\n' in
-  if any check_host_line lines then true else false
+  if evey check_host_line lines then true else false
 
 let write_host ~path body_string =
   try
