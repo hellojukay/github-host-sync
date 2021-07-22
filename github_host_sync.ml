@@ -40,8 +40,9 @@ let () =
     let body_string = Lwt_main.run body in
     if is_host body_string then write_host ~path:!path body_string
     else Printf.fprintf stderr "http response body is not hosts contents\n";
-    (*sleep for a second*)
     Out_channel.flush stdout;
     Out_channel.flush stderr;
+
+    (*sleep for 10 minutes*)
     Unix.sleep (60 * 10)
   done
